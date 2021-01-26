@@ -12,19 +12,21 @@ export function addTodoAction (todos) {
     }
 }
 
-export function deleteTodoAction (id) {
-    return (dispatch) => {
-        dispatch(deleteTodo(id))
-    }
-}
-
-
 const addTodo = (todos) => ({
     type: ADD_TODO,
     payload: todos
 })
 
-const deleteTodo = id => ({
+
+
+export function deleteTodoAction (id) {
+    return (dispatch) => {
+        dispatch(deleteTodo(id))
+        console.log(id)
+    }
+}
+
+const deleteTodo = (id) => ({
     type:DELETE_TODO,
     payload: id,
 })

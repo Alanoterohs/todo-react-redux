@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import FormTodo from '../common/FormTodo'
 import ListItems from '../common/List'
-import { addTodoAction } from '../actions/TodoActions'
+import { addTodoAction, deleteTodoAction } from '../actions/TodoActions'
 import { useDispatch, useSelector } from 'react-redux'
 
 
@@ -9,14 +9,15 @@ import { useDispatch, useSelector } from 'react-redux'
 const Form = () => {
 
     const [task, setTask] = useState('')
+
+    let id= 0;
     
     //llamo a la actions
     const dispatch= useDispatch();
-    const addTodos = task => dispatch(addTodoAction(task))
+    const addTodos = task => dispatch(addTodoAction(task));
     
     //me traigo el state
     const tasks = useSelector(state => state.todos.todo);
-    // console.log({tasks})
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
@@ -35,6 +36,7 @@ const Form = () => {
 
     <ListItems
     todos={tasks}
+    id={id}
     />
     </div>
         )

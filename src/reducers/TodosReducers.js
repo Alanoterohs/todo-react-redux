@@ -7,9 +7,9 @@ import {
 //Cada reducers tiene su propio State
 
 const initialState = {
-    id: 0,
     todo: [],
     completed: false,
+    deleted: null,
 }
 
 export default function(state= initialState, action) {
@@ -17,17 +17,17 @@ export default function(state= initialState, action) {
         case ADD_TODO:
             return {
                 ...state,
-                id: state.id+1,
                 todo: [...state.todo, action.payload],
                 completed: true,
             }
         case DELETE_TODO:
             return {
                 ...state,
-                id: "",
-                todo: [...state.todo, action.payload],
-                completed: true,
+                todo: state.todo.filter(todos => todos.id !== state.deleted),
+                deleted: null, 
             }
+
+
         default:
             return state;
     }
